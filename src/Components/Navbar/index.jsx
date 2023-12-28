@@ -1,3 +1,4 @@
+import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 import React from "react";
 
@@ -44,7 +45,9 @@ const Navbar = () => {
           <NavLink to="/sign-in">Sign In</NavLink>
         </li>
         <li>
-          <NavLink to="#">🛒 {context.count}</NavLink>
+          <NavLink to="#" className="flex gap-2">
+            <ShoppingBagIcon className="size-5 text-black" /> {context.count}
+          </NavLink>
         </li>
       </ul>
     </nav>
