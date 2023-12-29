@@ -2,9 +2,9 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 import React from "react";
 
-const DetailCard = (content) => {
+const DetailCard = () => {
   const context = React.useContext(ShoppingCartContext);
-  console.log("Aqui las props: ", content);
+
   return (
     <>
       <header className="px-6 py-2 flex items-center justify-between">

@@ -13,7 +13,6 @@ const Navbar = () => {
       name: "cart",
     });
     context.openSideMenu();
-    console.log(context.cartProducts);
   };
 
   return (
@@ -54,11 +53,7 @@ const Navbar = () => {
           <NavLink to="/sign-in">Sign In</NavLink>
         </li>
         <li>
-          <NavLink
-            to="#"
-            className="flex gap-2"
-            onClick={() => showCartContent()}
-          >
+          <NavLink to="#" className="flex gap-2" onClick={showCartContent}>
             <ShoppingBagIcon className="size-5 text-black" /> {context.count}
           </NavLink>
         </li>

@@ -3,14 +3,14 @@ import React from "react";
 import { DetailCard } from "./DetailCard";
 import { OrderCard } from "./OrderCard";
 
+const sideMenuContent = {
+  detail: <DetailCard />,
+  cart: <OrderCard />,
+};
+
 const SideMenu = (content) => {
   const context = React.useContext(ShoppingCartContext);
   const showDetail = context.isSideMenuOpen ? "right-0" : "-right-96";
-
-  const sideMenuContent = {
-    detail: <DetailCard />,
-    cart: <OrderCard />,
-  };
 
   return (
     //context.isSideMenuOpen && (

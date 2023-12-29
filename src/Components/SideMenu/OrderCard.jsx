@@ -4,7 +4,12 @@ import React from "react";
 
 const OrderCard = () => {
   const context = React.useContext(ShoppingCartContext);
-  console.log(context.cartProducts);
+  const updateCart = (index) => {
+    context.setCount(context.count - 1);
+    context.cartProducts.splice(index, 1);
+    context.setCartProducts(context.cartProducts);
+  };
+
   return (
     <>
       <header className="px-6 pt-2 pb-6 flex items-center justify-between">
@@ -14,10 +19,13 @@ const OrderCard = () => {
           onClick={context.closeSideMenu}
         />
       </header>
-      {context.cartProducts.toReversed().map((cartProduct) => (
-        <figure className="px-6 flex gap-3 items-center justify-between border-b-2 border-gray-300/25 pb-2">
+      {context.cartProducts.map((cartProduct, index) => (
+        <figure
+          key={cartProduct.id}
+          className="px-6 flex gap-3 items-center justify-between border-b-2 border-gray-300/25 py-3"
+        >
           <img
-            className="rounded-lg size-14 object-cover"
+            className="rounded-lg size-14 object-cover border border-2"
             src={cartProduct.images}
             alt={cartProduct.title}
           />
@@ -26,8 +34,8 @@ const OrderCard = () => {
             $ {cartProduct.price}
           </span>
           <XMarkIcon
-            className="size-6 text-black"
-            onClick={context.closeSideMenu}
+            className="size-6 text-black fill-red-400 hover:fill-red-600 stroke-1 cursor-pointer"
+            onClick={() => updateCart(index)}
           />
         </figure>
       ))}

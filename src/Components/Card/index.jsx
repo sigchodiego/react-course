@@ -16,7 +16,6 @@ const Card = (data) => {
   const addProductsToCart = (productData) => {
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
-    console.log("CART: ", context.cartProducts);
   };
   return (
     <div
