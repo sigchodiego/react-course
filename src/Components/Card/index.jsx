@@ -5,9 +5,13 @@ import React from "react";
 
 const Card = (data) => {
   const context = React.useContext(ShoppingCartContext);
-  const showProduct = (productDetail) => {
-    context.openProductDetail();
-    context.setProductToShow(productDetail);
+  const showProduct = (SideMenu) => {
+    context.setSideMenuContent({
+      title: "Detail",
+      name: "detail",
+    });
+    context.openSideMenu();
+    context.setProductToShow(SideMenu);
   };
   const addProductsToCart = (productData) => {
     context.setCount(context.count + 1);

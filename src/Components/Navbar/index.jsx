@@ -7,6 +7,15 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const context = React.useContext(ShoppingCartContext);
 
+  const showCartContent = () => {
+    context.setSideMenuContent({
+      title: "Checkout",
+      name: "cart",
+    });
+    context.openSideMenu();
+    console.log(context.cartProducts);
+  };
+
   return (
     <nav className="w-full top-0 flex items-center justify-between fixed z-10 text-sm font-light py-5 px-8">
       <ul className="flex items-center gap-3">
@@ -45,7 +54,11 @@ const Navbar = () => {
           <NavLink to="/sign-in">Sign In</NavLink>
         </li>
         <li>
-          <NavLink to="#" className="flex gap-2">
+          <NavLink
+            to="#"
+            className="flex gap-2"
+            onClick={() => showCartContent()}
+          >
             <ShoppingBagIcon className="size-5 text-black" /> {context.count}
           </NavLink>
         </li>
