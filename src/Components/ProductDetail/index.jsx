@@ -20,11 +20,11 @@ const ProductDetail = () => {
       </header>
       <figure className="px-6">
         <img
-          className="w-full h-full rounded-lg"
+          className="rounded-lg"
           src={context.productToShow.images}
           alt={context.productToShow.title}
         />
-        <span className="text-2xl font-semibold my-2">
+        <span className="text-2xl font-semibold block my-2">
           $ {context.productToShow.price}
         </span>
         <h3 className="font-medium text-xl">{context.productToShow.title}</h3>

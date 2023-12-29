@@ -9,6 +9,11 @@ const Card = (data) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
   };
+  const addProductsToCart = (productData) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, productData]);
+    console.log("CART: ", context.cartProducts);
+  };
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60"
@@ -25,7 +30,7 @@ const Card = (data) => {
         />
         <div
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2"
-          onClick={() => context.setCount(context.count + 1)}
+          onClick={() => addProductsToCart(data.data)}
         >
           <PlusIcon className="size-3 text-black" />
         </div>
