@@ -18,6 +18,20 @@ const ProductDetail = () => {
           onClick={context.closeProductDetail}
         />
       </header>
+      <figure className="px-6">
+        <img
+          className="w-full h-full rounded-lg"
+          src={context.productToShow.images}
+          alt={context.productToShow.title}
+        />
+        <span className="text-2xl font-semibold my-2">
+          $ {context.productToShow.price}
+        </span>
+        <h3 className="font-medium text-xl">{context.productToShow.title}</h3>
+        <p className="font-light text-md">
+          {context.productToShow.description}
+        </p>
+      </figure>
     </aside>
     //)
   );
