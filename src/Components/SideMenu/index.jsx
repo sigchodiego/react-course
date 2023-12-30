@@ -15,7 +15,7 @@ const SideMenu = (content) => {
   return (
     //context.isSideMenuOpen && (
     <aside
-      className={`w-[360px] flex flex-col fixed bg-white border border-black rounded rounded-l h-[calc(100vh-68px)] top-[68px] transition ease-in-out duration-200 ${showDetail}`}
+      className={`w-[360px] flex flex-col fixed bg-white border border-black rounded rounded-l h-[calc(100vh-68px)] top-[68px] transition ease-in-out duration-200 ${showDetail} overflow-y-scroll`}
     >
       {sideMenuContent[content.content.name]}
     </aside>
