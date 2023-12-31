@@ -1,6 +1,11 @@
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowDownRightIcon,
+  ArrowRightIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 import React from "react";
+import totalPrice from "../../Utils";
 
 const OrderCard = () => {
   const context = React.useContext(ShoppingCartContext);
@@ -8,6 +13,19 @@ const OrderCard = () => {
     context.setCount(context.count - 1);
     context.cartProducts.splice(index, 1);
     context.setCartProducts(context.cartProducts);
+  };
+
+  const hendledCheckout = () => {
+    const orderToAdd = {
+      date: "01.02.2023",
+      products: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: totalPrice(context.cartProducts),
+    };
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+    context.setCount(0);
+    context.closeSideMenu();
   };
 
   return (
@@ -39,6 +57,15 @@ const OrderCard = () => {
           />
         </figure>
       ))}
+      <footer className="p-8 text-right font-semibold text-2xl">
+        <p>Total: ${totalPrice(context.cartProducts)}</p>
+        <button
+          className="w-full bg-gray-900 rounded text-xl text-white py-2 px-5 mt-10 flex items-center justify-between"
+          onClick={() => hendledCheckout()}
+        >
+          Checkout <ArrowRightIcon className="size-6 ml-3" />
+        </button>
+      </footer>
     </>
   );
 };

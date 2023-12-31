@@ -7,6 +7,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = React.useState(false);
   const [productToShow, setProductToShow] = React.useState({});
   const [cartProducts, setCartProducts] = React.useState([]);
+  const [order, setOrder] = React.useState([]);
   const [sideMenuContent, setSideMenuContent] = React.useState({
     title: "Detail",
     name: "detail",
@@ -29,6 +30,8 @@ export const ShoppingCartProvider = ({ children }) => {
         setCartProducts,
         sideMenuContent,
         setSideMenuContent,
+        order,
+        setOrder,
       }}
     >
       {children}
