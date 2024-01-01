@@ -16,6 +16,31 @@ export const ShoppingCartProvider = ({ children }) => {
   const closeSideMenu = () => setIsSideMenuOpen(false);
   const openSideMenu = () => setIsSideMenuOpen(true);
 
+  // Get data
+
+  const [items, setItems] = React.useState(null);
+  React.useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
+
+  // Input para buscar productos
+  const [searchByTitle, setSearchByTitle] = React.useState(null);
+  const [filteredItems, setFilteredItems] = React.useState(null);
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  React.useEffect(() => {
+    if (searchByTitle) {
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+    }
+  }, [items, searchByTitle]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -32,6 +57,12 @@ export const ShoppingCartProvider = ({ children }) => {
         setSideMenuContent,
         order,
         setOrder,
+        items,
+        setItems,
+        searchByTitle,
+        setSearchByTitle,
+        filteredItems,
+        setFilteredItems,
       }}
     >
       {children}
