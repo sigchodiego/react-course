@@ -25,13 +25,34 @@ const Navbar = () => {
           <NavLink to="/">All</NavLink>
         </li>
         <li className="flex align-center">
-          <NavLink to="/clothes">Clothes</NavLink>
+          <NavLink
+            to="/clothes"
+            onClick={() => {
+              context.setSearchByCategory("clothes");
+            }}
+          >
+            Clothes
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/electronics">Electronics</NavLink>
+          <NavLink
+            to="/electronics"
+            onClick={() => {
+              context.setSearchByCategory("electronics");
+            }}
+          >
+            Electronics
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/furnitures">Furnitures</NavLink>
+          <NavLink
+            to="/furnitures"
+            onClick={() => {
+              context.setSearchByCategory("furnitures");
+            }}
+          >
+            Furnitures
+          </NavLink>
         </li>
         <li>
           <NavLink to="/toys">Toys</NavLink>
