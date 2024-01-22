@@ -15,6 +15,12 @@ const Navbar = () => {
     context.openSideMenu();
   };
 
+  const handleSignOut = () => {
+    const stringifiedSignOut = JSON.stringify(true);
+    localStorage.setItem("sign-out", stringifiedSignOut);
+    context.setSignOut(true);
+  };
+
   return (
     <nav className="w-full top-0 flex items-center justify-between fixed z-10 text-sm font-light py-5 px-8">
       <ul className="flex items-center gap-3">
@@ -71,7 +77,9 @@ const Navbar = () => {
           <NavLink to="/my-account">My Account</NavLink>
         </li>
         <li>
-          <NavLink to="/sign-in">Sign In</NavLink>
+          <NavLink to="/sign-in" onClick={() => handleSignOut()}>
+            Sign Out
+          </NavLink>
         </li>
         <li>
           <NavLink to="#" className="flex gap-2" onClick={showCartContent}>
