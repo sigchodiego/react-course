@@ -7,6 +7,11 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const context = React.useContext(ShoppingCartContext);
 
+  // Sign Out
+  const signOut = localStorage.getItem("sign-out");
+  const parsedSignOut = JSON.parse(signOut);
+  const isUserSignOut = context.signOut || parsedSignOut;
+
   const showCartContent = () => {
     context.setSideMenuContent({
       title: "Checkout",
@@ -19,6 +24,35 @@ const Navbar = () => {
     const stringifiedSignOut = JSON.stringify(true);
     localStorage.setItem("sign-out", stringifiedSignOut);
     context.setSignOut(true);
+  };
+
+  const renderView = () => {
+    if (isUserSignOut) {
+      return (
+        <li>
+          <NavLink to="/sign-in" onClick={() => handleSignOut()}>
+            Sign out
+          </NavLink>
+        </li>
+      );
+    } else {
+      return (
+        <>
+          <li className="text-black/60">sigchodiego@gmail</li>
+          <li>
+            <NavLink to="/my-orders">My Orders</NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-account">My Account</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sign-in" onClick={() => handleSignOut()}>
+              Sign out
+            </NavLink>
+          </li>
+        </>
+      );
+    }
   };
 
   return (
@@ -68,25 +102,7 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <ul className="flex align-center gap-3">
-        <li>sigchodiego@gmail.com</li>
-        <li>
-          <NavLink to="/my-orders">My Orders</NavLink>
-        </li>
-        <li>
-          <NavLink to="/my-account">My Account</NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-in" onClick={() => handleSignOut()}>
-            Sign Out
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="#" className="flex gap-2" onClick={showCartContent}>
-            <ShoppingBagIcon className="size-5 text-black" /> {context.count}
-          </NavLink>
-        </li>
-      </ul>
+      <ul className="flex align-center gap-3">{renderView()}</ul>
     </nav>
   );
 };
